@@ -85,10 +85,9 @@ author:
   bio              : "Graduate scientist in computational chemistry and machine learning at AstraZeneca"
   location         : "Cambridge, UK"
   email            : "jharrymoore@btinternet.com"
-  github           : "http://github.com/jharrymoore"           
-  twitter          : "http://twitter.com/jhmchem"
+  github           : "jharrymoore"           
+  twitter          : "jhmchem"
   orcid            : "http://orcid.org/yourorcidurl"
-
 
 # Reading Files
 include:
