@@ -57,7 +57,7 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : &twitter "@jhmchem"
+  username               : &twitter "jhmchem"
 facebook:
   username               :
   app_id                 :
@@ -86,7 +86,7 @@ author:
   location         : "Cambridge, UK"
   email            : "jharrymoore@btinternet.com"
   github           : "http://github.com/jharrymoore"           
-  linkedin         :
+  twitter          : "http://twitter.com/jhmchem"
   orcid            : "http://orcid.org/yourorcidurl"
 
 
