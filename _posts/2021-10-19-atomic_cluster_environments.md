@@ -12,8 +12,7 @@ Introduction to Atomic Descriptors
 ======
 In classical molecular dynamics, the interatomic potential is approximated as a summation of bonded and non-bonded interactions.  Empirical forcefields parametrise these with simple functional forms (1), resulting in few free parameters that can be fitted, either by hand, or automatically, to experimental and ab initio electronic structure calculations.  Whilst these potentials are fast to evaluate and are capture intuitive body-ordered interactions (bonds, angles, torsions), they are fundamentally limited in their accuracy and cannot, without significant modification, capture reactivity or non-equilibrium dynamics.
 
-$$ SE = \frac{\sigma}{\sqrt{n}} (1) $$
-```
+$$ E = \sum_{bonds} k_r(r-r_{eq})^2 + \sum_{angles} k_{sigma} (\theta - \theta_{eq})^2 + \sum_{dihedrals} \frac{v_n}{2} (1 + cos(n\phi - \gamma)) + E_{non-bonded}$$
 
 
 An alternative formulation
@@ -24,7 +23,11 @@ The general approach
 -----
 Many formulations exist in the materials modelling literature that rely on a similar approach.  Fundamentally, atomic neighbour density is a poor basis function from which to construct a potential - whilst it provides translational and permutational invariance between like atoms 'for free', it fails to capture rotational invariance.  
 
+$$ \rho_{i}^{z}(r) = \sum_j \delta_{z z_j}\delta(r-r_{ij}) $$
+
 Multiple approaches apply the same idea - projection of the atomic density onto a rotationally invariant basis allow us to construct descriptor vectors centered on each atom in the system.
+
+$$ A_{z_i znlm} = \bra{\rho_i^{z}} | \ket{\phi_{nlm}^{z_i z}} $$
 
 Originally employed in the SOAP descriptors, a basis function containing a product of a radial component (of unspecified functional form) and a spherical harmonics can be integrated over the rotational point group O(3) to provide a rotationally invariant descriptor.  
 
