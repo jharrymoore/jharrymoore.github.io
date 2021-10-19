@@ -27,7 +27,9 @@ $$ \rho_{i}^{z}(r) = \sum_j \delta_{z z_j}\delta(r-r_{ij}) $$
 
 Multiple approaches apply the same idea - projection of the atomic density onto a rotationally invariant basis allow us to construct descriptor vectors centered on each atom in the system.
 
-$$ A_{z_i znlm} = \langle \rho_i^{z} | \phi_{nlm}^{z_i z} \rangle = \sum_j \phi_{nlm}^{z_i z_j} (r_{ij})$$
+$$ 
+A_{z_i znlm} = \langle \rho_i^{z} | \phi_{nlm}^{z_i z} \rangle = \sum_j \phi_{nlm}^{z_i z_j} (r_{ij})
+$$
 
 Originally employed in the SOAP descriptors, a basis function containing a product of a radial component (of unspecified functional form) and a spherical harmonics can be integrated over the rotational point group O(3) to provide a rotationally invariant descriptor.  
 
