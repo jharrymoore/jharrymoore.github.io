@@ -2,7 +2,7 @@
 title: 'Atomic Cluster Environments'
 date: October 2021
 collection: posts
-permalink: /posts/2021-10-ace
+permalink: /posts/2012/08/blog-post-1/
 tags:
   - machine learning
   - molecular dynamics
