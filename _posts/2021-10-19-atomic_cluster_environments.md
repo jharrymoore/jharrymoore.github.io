@@ -12,8 +12,7 @@ Introduction to Atomic Descriptors
 ======
 In classical molecular dynamics, the interatomic potential is approximated as a summation of bonded and non-bonded interactions.  Empirical forcefields parametrise these with simple functional forms (1), resulting in few free parameters that can be fitted, either by hand, or automatically, to experimental and ab initio electronic structure calculations.  Whilst these potentials are fast to evaluate and are capture intuitive body-ordered interactions (bonds, angles, torsions), they are fundamentally limited in their accuracy and cannot, without significant modification, capture reactivity or non-equilibrium dynamics.
 
-```math
-SE = \frac{\sigma}{\sqrt{n}} (1)
+$$ SE = \frac{\sigma}{\sqrt{n}} (1) $$
 ```
 
 
