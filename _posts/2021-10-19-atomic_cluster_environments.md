@@ -33,7 +33,7 @@ Originally employed in the SOAP descriptors, a basis function containing a produ
 
 In both the SOAP and ACE framework, the 'density trick' is employed: essentially the basis set is constructed a product of the projected density functions, provides a computationally easier way to evaluate the cross terms and construct a body-ordered representation, with an evaluation time that scales linearly with basis set size, instead of exponentially.
 
-$$ A_{z_i v} = \prod_{t=1}^v A_{z_i v_t} $$
+$$ A_{z_i \mathbf{v}} = \prod_{t=1}^v A_{z_i v_t} $$
 
 The total energy of the system is then a sum of the atomic energies, each of which if computed from a fitted linear model in the basis set functions.
 
