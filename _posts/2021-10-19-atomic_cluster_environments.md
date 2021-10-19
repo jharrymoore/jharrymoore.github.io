@@ -27,13 +27,17 @@ $$ \rho_{i}^{z}(r) = \sum_j \delta_{z z_j}\delta(r-r_{ij}) $$
 
 Multiple approaches apply the same idea - projection of the atomic density onto a rotationally invariant basis allow us to construct descriptor vectors centered on each atom in the system.
 
-$$ A_{z_i znlm} = \langle \rho_i^{z} | \phi_{nlm}^{z_i z} \rangle = \sum_j \phi_{nlm}^{z_i z_j} (r_{ij}$$
+$$ A_{z_i znlm} = \langle \rho_i^{z} | \phi_{nlm}^{z_i z} \rangle = \sum_j \phi_{nlm}^{z_i z_j} (r_{ij})$$
 
 Originally employed in the SOAP descriptors, a basis function containing a product of a radial component (of unspecified functional form) and a spherical harmonics can be integrated over the rotational point group O(3) to provide a rotationally invariant descriptor.  
 
 In both the SOAP and ACE framework, the 'density trick' is employed: essentially the basis set is constructed a product of the projected density functions, provides a computationally easier way to evaluate the cross terms and construct a body-ordered representation, with an evaluation time that scales linearly with basis set size, instead of exponentially.
 
+$$ A_{z_i v} = \product_{t=1}^v A_{z_i v_t} $$
+
 The total energy of the system is then a sum of the atomic energies, each of which if computed from a fitted linear model in the basis set functions.
+
+$$ E_i = \sum_v c_{v_i v} A_{z_i v} + \sum_v c_{v_i v_1 v_2} A_{z_i v_1}A_{z_i v_2} + ... $$
 
 Hyperparameters of the ACE framework
 -----
