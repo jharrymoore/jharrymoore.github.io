@@ -91,7 +91,7 @@ General Notes
 
 
 __PhysNet -  J. Chem. Theory Comput. 2019, 15, 3678−3693__
-One of the forcefields compared in the ACE preprint
+One of the forcefields compared in the ACE preprint is PhysNet, a message passing approach that does without physics-based descriptors and constructs them in a data-driven way, prior to feed forward layers to create the regression problem and predict molecular energies.
 
 
 Questions
