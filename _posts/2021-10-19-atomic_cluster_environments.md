@@ -80,7 +80,7 @@ An update to the OpenMM Sage forcefield that applies a graph convolutional neura
 
 GNN approaches are not generally body-ordered, so the FFNN is required to convert the atomic representation to a set of body-ordered functions for evaluation by a classical MD engine
 
-General Notes
+__General Notes__
 - The authors show that by simply adding additional QM data to their model, they can produce parameters for a wide range of structures, achieving accuracy on par with classical forcefields.  This includes proteins and small molecules by simultaneously training on a Zinc subset and PepConf
 - Their benchmark for energy comparison is not QML models explicitly, based on their relative speed.
 - It is possible to simply transplant long-range interactions using VdW/Coulombic potentials straight from the classical potential, and use the QML/GNN potential to represent only the bonded interactions
@@ -93,12 +93,28 @@ General Notes
 __PhysNet -  J. Chem. Theory Comput. 2019, 15, 3678−3693__
 One of the forcefields compared in the ACE preprint is PhysNet, a message passing approach that does without physics-based descriptors and constructs them in a data-driven way, prior to feed forward layers to create the regression problem and predict molecular energies.
 
+Nodes are featurised by basic cheminformatics descriptors, ring membership, formal charge etc.
+
+
+
 
 Questions
 -----
+- To apply this to molecular modelling, a few requirements need to be met
+	- Speed 
+		- Need access to nanosecond timescales
+		- Sparsify the set of basis functions
+		- Implement GPU kernel
+		- Combine with empirical forcefield? 
+			- Or combine multiple models for different substrates (cheaper model for the peptide)
+	- Accuracy - DFT-level energies would have a huge impact on FEP studies
+	- Extensibility 
+		- How general can the forcefields be?
+		- How large a system can you simulate
 - How would you treat long-range interactions? Charge Transfer events? How far from the equilibrium-ish simulated trajectory can you get?
 	- If we want reactive potentials, we must be able to treat the long range physics sufficiently well.
 	- Subtract this component before fitting if you know the form?
+	- Apply a multi-scale model that combines the two length scales?
 - How would you deal with solvation effects? Currently these are gas-phase calculations
 - How do you go beyond systems that are accessable to high-level DFT
 	- What do you do in the case of materials? Simulate on smaller systems?
