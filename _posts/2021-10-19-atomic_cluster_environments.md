@@ -53,4 +53,33 @@ In the fit we minimise combined MSE for predicted energies and forces summed ove
 
 Results
 -----
+With an isometrically invariant basis set in hand, we can see how good it is for making predictions on a dataset.  In principle, we could use these descriptors to predict any property we want (SOAP has been sucessfully employed as an alternative to tranditional QSAR descriptors), but for forcefield parametrisation, we want to fit the model to the total energy of the system.  Note that this fits into the interesting class of machine learning problems where we attempt to infer some unobservable value (in this case the per-atom contribution) as a derived property of the total energy of the system (which is what we get from QM).  
+
+In general, fitting a functional form up to v=4 (5 body terms) is about the maximum you can accept before the scaling kicks in and evaluation time per atom becomes too slow.  An interesting question is how to sparsify your basis set to construct an optimal Paretto frontier in terms of accuracy and evaluation time.  Note that ACE is implemented in Julia currently.
+
+ACE models trained on QM data from MD17 are able to accurately predict total forces and energies with MAEs on par or better than state of the art approaches.  Crucially, it is also extremely performant in the low-data limit where few training configurations are provided, relative to the other models, and in every case draws the Pareto frontier in terms of speed vs accuracy with various basis set sizes.  
+
+A key question in modelling drug-like organic molecules is how well the model performs far from the training set geometries, which means you don't have to retrain your potential energy surface at multiple temperatures.  Careful regularisation is key to ensuring a smooth potential here.
+
+An interesting question arrises when you train on the entire dataset.  ACE errors increase by more than the other models (partially because the neural network approaches offer a more flexible functional form, indicating ACE underfits to this data).  Despite this, the overall errors from the ACE model are still lowest, however with additional training set size, this may not be the case.  It does demonstrate some ability to generalise to completely unknown molecules though, and uses orders of magnitude less training data than the neural net approaches.  
+
+Summary
+-----
+- ACE models use a projection of density onto a rotationally invariant basis set to construct a body-ordered forcefield.
+- The 'density trick' allows for the construction of a high body-ordered basis set without the requirement for evaluating each cross-term in the expansion
+	- Scaling is not affected by the body order explicitly, but the number of functions does scale exponentially with body order, and overall evaluation time scales linearly with basis set size.
+- ACE performs well in the low-data limit, requiring orders of magnitude less data than the neural net models
+- There is some optimisation to be had in selecting the optimal basis functions to include at each body order.
+
+
+Questions
+-----
+- How would you treat long-range interactions? Charge Transfer events? How far from the equilibrium-ish simulated trajectory can you get?
+	- Subtract this component before fitting if you know the form?
+- How would you deal with solvation effects? Currently these are gas-phase calculations
+- How do you go beyond systems that are accessable to high-level DFT
+	- What do you do in the case of materials? Simulate on smaller systems?
+	- Could you do the same for oligomers, polymers, etc?
+- How general can the forcefields be made? Could we train a forcefield based on a congeneric series of ligands? 
+- How would we model interactions with proteins? Could we calculate the change in binding energy using these potentials? 
 
