@@ -70,11 +70,34 @@ Summary
 	- Scaling is not affected by the body order explicitly, but the number of functions does scale exponentially with body order, and overall evaluation time scales linearly with basis set size.
 - ACE performs well in the low-data limit, requiring orders of magnitude less data than the neural net models
 - There is some optimisation to be had in selecting the optimal basis functions to include at each body order.
+- One of the key advantages over GNN approaches is the data requirement.  MSE/training set size is a key performance descriptor.
+
+
+Related Work
+-----
+__Chodera et al - arXiv:2010.01196v2__
+An update to the OpenMM Sage forcefield that applies a graph convolutional neural network to learn continuous atomtypes using message passing, and a subsequent FFNN to generate body-ordered parameters compatible with empirical forcefield functional forms, giving performance on par with classical forcefields but it's much more easily extensible.
+
+GNN approaches are not generally body-ordered, so the FFNN is required to convert the atomic representation to a set of body-ordered functions for evaluation by a classical MD engine
+
+General Notes
+- The authors show that by simply adding additional QM data to their model, they can produce parameters for a wide range of structures, achieving accuracy on par with classical forcefields.  This includes proteins and small molecules by simultaneously training on a Zinc subset and PepConf
+- Their benchmark for energy comparison is not QML models explicitly, based on their relative speed.
+- It is possible to simply transplant long-range interactions using VdW/Coulombic potentials straight from the classical potential, and use the QML/GNN potential to represent only the bonded interactions
+- In principle, the same GPU optimisation employed here is transferrable to an ACE environment, whereas the ASE simulation engine is CPU-bound 
+- In principle, the inherent body-ordering of terms in the ACE framework should cut out the 'middle man' neural net and can be used directly to evaluate the energy of the configuration.  The functional form is now polynomial instead of some fixed function
+	- To what extent can GPU acceleration ameliorate the performance loss here? 
+
+
+
+__PhysNet -  J. Chem. Theory Comput. 2019, 15, 3678−3693__
+One of the forcefields compared in the ACE preprint
 
 
 Questions
 -----
 - How would you treat long-range interactions? Charge Transfer events? How far from the equilibrium-ish simulated trajectory can you get?
+	- If we want reactive potentials, we must be able to treat the long range physics sufficiently well.
 	- Subtract this component before fitting if you know the form?
 - How would you deal with solvation effects? Currently these are gas-phase calculations
 - How do you go beyond systems that are accessable to high-level DFT
@@ -82,4 +105,5 @@ Questions
 	- Could you do the same for oligomers, polymers, etc?
 - How general can the forcefields be made? Could we train a forcefield based on a congeneric series of ligands? 
 - How would we model interactions with proteins? Could we calculate the change in binding energy using these potentials? 
-
+- Can you apply explainability approahches (SHAP, ...) to identify most important contributions from basis sets?
+- 
