@@ -7,7 +7,7 @@ tags:
   - molecular dynamics
   - molecular descriptors
 ---
-
+<div style="text-align: right">  
 Introduction to Atomic Descriptors
 ======
 In classical molecular dynamics, the interatomic potential is approximated as a summation of bonded and non-bonded interactions.  Empirical forcefields parametrise these with simple functional forms (1), resulting in few free parameters that can be fitted, either by hand, or automatically, to experimental and ab initio electronic structure calculations.  Whilst these potentials are fast to evaluate and are capture intuitive body-ordered interactions (bonds, angles, torsions), they are fundamentally limited in their accuracy and cannot, without significant modification, capture reactivity or non-equilibrium dynamics.
@@ -109,7 +109,9 @@ Questions
 			- Or combine multiple models for different substrates (cheaper model for the peptide)
 	- Accuracy - DFT-level energies would have a huge impact on FEP studies
 	- Extensibility 
+		- ACE descriptors are complete, so can produce arbitrarily accurate potentials in principle
 		- How general can the forcefields be?
+			- Does the reliance on a linear function reduce their ability to fit more generally?
 		- How large a system can you simulate
 - How would you treat long-range interactions? Charge Transfer events? How far from the equilibrium-ish simulated trajectory can you get?
 	- If we want reactive potentials, we must be able to treat the long range physics sufficiently well.
@@ -123,3 +125,5 @@ Questions
 - How would we model interactions with proteins? Could we calculate the change in binding energy using these potentials? 
 - Can you apply explainability approahches (SHAP, ...) to identify most important contributions from basis sets?
 - 
+
+</div>
