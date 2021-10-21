@@ -7,7 +7,6 @@ tags:
   - molecular dynamics
   - molecular descriptors
 ---
-<div style="text-align: right">  
 Introduction to Atomic Descriptors
 ======
 In classical molecular dynamics, the interatomic potential is approximated as a summation of bonded and non-bonded interactions.  Empirical forcefields parametrise these with simple functional forms (1), resulting in few free parameters that can be fitted, either by hand, or automatically, to experimental and ab initio electronic structure calculations.  Whilst these potentials are fast to evaluate and are capture intuitive body-ordered interactions (bonds, angles, torsions), they are fundamentally limited in their accuracy and cannot, without significant modification, capture reactivity or non-equilibrium dynamics.
@@ -125,5 +124,3 @@ Questions
 - How would we model interactions with proteins? Could we calculate the change in binding energy using these potentials? 
 - Can you apply explainability approahches (SHAP, ...) to identify most important contributions from basis sets?
 - 
-
-</div>
